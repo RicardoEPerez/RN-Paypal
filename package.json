@@ -1,18 +1,29 @@
 {
   "name": "paypal-rn",
   "version": "1.0.0",
-  "description": "",
+  "description": "[Integrating Paypal in your react native app](https://medium.com/@adityasingh_32512/integrating-paypal-in-your-react-native-app-4dcf89e11dd)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.20.1",
     "consolidate": "^0.15.1",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "ejs": "^2.7.4",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
     "paypal-rest-sdk": "^1.8.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morfsys/nodejs-paypal.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/morfsys/nodejs-paypal/issues"
+  },
+  "homepage": "https://github.com/morfsys/nodejs-paypal#readme"
 }

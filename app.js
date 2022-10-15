@@ -25,38 +25,38 @@ app.get("/", (req, res) => {
 });
 
 app.get("/paypal", (req, res) => {
-    var create_payment_json = {
-        intent: "sale",
-        payer: {
-            payment_method: "paypal"
+    let create_payment_json = {
+        "intent": "sale",
+        "payer": {
+            "payment_method": "paypal"
         },
-        redirect_urls: {
-            return_url: "http://localhost:3000/success",
-            cancel_url: "http://localhost:3000/cancel"
+        "redirect_urls": {
+            "return_url": "http://localhost:3000/success",
+            "cancel_url": "http://localhost:3000/cancel"
         },
-        transactions: [
+        "transactions": [
             {
-                item_list: {
-                    items: [
+                "item_list": {
+                    "items": [
                         {
-                            name: "item",
-                            sku: "item",
-                            price: "1.00",
-                            currency: "USD",
-                            quantity: 1
+                            "name": "item",
+                            "sku": "item",
+                            "price": "1.00",
+                            "currency": "USD",
+                            "quantity": "1"
                         }
                     ]
                 },
-                amount: {
-                    currency: "USD",
-                    total: "1.00"
+                "amount": {
+                    "currency": "USD",
+                    "total": "1.00"
                 },
-                description: "This is the payment description."
+                "description": "This is the payment description."
             }
         ]
     };
 
-    paypal.payment.create(create_payment_json, function(error, payment) {
+    paypal.payment.create(create_payment_json, function (error, payment) {
         if (error) {
             throw error;
         } else {
@@ -69,21 +69,21 @@ app.get("/paypal", (req, res) => {
 
 app.get("/success", (req, res) => {
     // res.send("Success");
-    var PayerID = req.query.PayerID;
-    var paymentId = req.query.paymentId;
-    var execute_payment_json = {
-        payer_id: PayerID,
-        transactions: [
+    let PayerID = req.query.PayerID;
+    let paymentId = req.query.paymentId;
+    let execute_payment_json = {
+        "payer_id": PayerID,
+        "transactions": [
             {
-                amount: {
-                    currency: "USD",
-                    total: "1.00"
+                "amount": {
+                    "currency": "USD",
+                    "total": "1.00"
                 }
             }
         ]
     };
 
-    paypal.payment.execute(paymentId, execute_payment_json, function(
+    paypal.payment.execute(paymentId, execute_payment_json, function (
         error,
         payment
     ) {
