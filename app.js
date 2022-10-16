@@ -15,9 +15,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 paypal.configure({
     mode: "sandbox", //sandbox or live
     client_id:
-        "AarUi7DfcZaVwTyuHOE2qMPGP1Gy65T8KNHicseSgSXB-gm_2upRM74fU-MKmslNaHKqNOUsxMrNv9I-",
+        "AZ8mAURC-IEkNDbIG_aRPvoApnpHQNnb7QrUrls79RT6Uhon42hN_y26NDE2Xef-8LBx92sCU91rVweA",
     client_secret:
-        "EI0ea3hVzYFwuts33i0RUVhxF48woSUSg7lwNbkImLrHpcEYpUmJPRXdf4CXn4kFacsRoZ-62cn9Xe6h"
+        "EJYJc4U8xO3LIei9sVTYyMf3DnsQVqRrSiCm-SxOvtMe8vvmycCOWPdffPhmpi7sPYvexyEhCaKcE1QW"
 });
 
 app.get("/", (req, res) => {
@@ -31,8 +31,8 @@ app.get("/paypal", (req, res) => {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:3000/success",
-            "cancel_url": "http://localhost:3000/cancel"
+            "return_url": "http://192.168.0.159:3000/success", //Ponga su localhost personal o host en la nube
+            "cancel_url": "http://192.168.0.159:3000/cancel"   //Ponga su localhost personal o host en la nube
         },
         "transactions": [
             {
@@ -41,17 +41,17 @@ app.get("/paypal", (req, res) => {
                         {
                             "name": "item",
                             "sku": "item",
-                            "price": "1.00",
-                            "currency": "USD",
+                            "price": "100.00",
+                            "currency": "MXN",
                             "quantity": "1"
                         }
                     ]
                 },
                 "amount": {
-                    "currency": "USD",
-                    "total": "1.00"
+                    "currency": "MXN",
+                    "total": "100.00"
                 },
-                "description": "This is the payment description."
+                "description": "Descripcion de la compra."
             }
         ]
     };
@@ -76,8 +76,8 @@ app.get("/success", (req, res) => {
         "transactions": [
             {
                 "amount": {
-                    "currency": "USD",
-                    "total": "1.00"
+                    "currency": "MXN",
+                    "total": "100.00"
                 }
             }
         ]
@@ -98,7 +98,7 @@ app.get("/success", (req, res) => {
     });
 });
 
-app.get("cancel", (req, res) => {
+app.get("/cancel", (req, res) => {
     res.render("cancel");
 });
 
