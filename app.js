@@ -21,10 +21,11 @@ paypal.configure({
 });
 
 app.post('/api/pru/', function (req, res) {
-
-    console.log(req.body);
+    
+    const {name,sku,price,currency,quantity}=req.body.params;
+    console.log("+++++++++++++2",name, price,quantity);
     app.get("/", (req, res) => {
-        // console.log("_____________________________", req.params)
+        console.log("_____________________________", req.params)
         res.render("index");
     });
 
@@ -35,24 +36,24 @@ app.post('/api/pru/', function (req, res) {
                 "payment_method": "paypal"
             },
             "redirect_urls": {
-                "return_url": "http://192.168.1.171:3000/success", //Ponga su localhost o host en la nube
-                "cancel_url": "http://192.168.1.171:3000/cancel"   //Ponga su localhost o host en la nube
+                "return_url": "http://localhost:3000/success", //Ponga su localhost o host en la nube
+                "cancel_url": "http://localhost:3000/cancel"   //Ponga su localhost o host en la nube
             },
             "transactions": [
                 {
                     "item_list": {
                         "items": [
                             {
-                                "name": req.body.name,
-                                "sku": req.body.sku,
-                                "price": req.body.price,
-                                "currency": req.body.currency,
-                                "quantity": req.body.quantity
+                                "name": name,
+                                "sku": sku,
+                                "price": price,
+                                "currency": currency,
+                                "quantity": quantity
                             }
                         ]
                     },
                     "amount": {
-                        "currency": req.body.currency,
+                        "currency": currency,
                         "total": "100.00"
                     },
                     "description": "Descripcion de la compra."
@@ -71,7 +72,7 @@ app.post('/api/pru/', function (req, res) {
             }
         });
     });
-
+    
 });
 
 //app.post("/api/Paypal", (req, res) => {
